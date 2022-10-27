@@ -63,3 +63,11 @@
       font-size: 2em;
     }
   }
+
+tr{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px;
+    font-size: 30px;
+}
