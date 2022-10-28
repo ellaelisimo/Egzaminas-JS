@@ -13,7 +13,8 @@ const users = [
 function getUserAverageAge(arr) {
   return users.reduce((acc, { age }) => acc + age, 0) / arr.length;
 }
-console.log(getUserAverageAge(users));
 
 const getUsersNames = (data) => data.flat().map(({ name }) => name);
+
+console.log(getUserAverageAge(users));
 console.log(getUsersNames(users));
