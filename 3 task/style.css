@@ -1,13 +1,13 @@
-/* Resets */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
       'Lucida Sans', Arial, sans-serif;
+      color:white
   }
-  
-  /* Mobile first */
+
   .wrapper {
     min-height: 100vh;
     min-width: calc(100vw - (100vw - 100%));
@@ -60,3 +60,16 @@
     background-color: rgb(85, 81, 81);
 
   }
+
+#output {
+display: flex;
+flex-direction: column;
+}
+img{
+  height: 300px;
+  padding-bottom: 50px;
+  border-radius: 15px;
+}
+h4{
+  font-size: 20px;
+}

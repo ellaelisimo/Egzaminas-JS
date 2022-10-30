@@ -1,5 +1,3 @@
-// taip ir nesugebėjua išsiaiškint, kame problema ir kaip ją spręst...
-
 const ENDPOINT = "https://api.github.com/users";
 
 const createheaderFooter = () => {
@@ -15,30 +13,32 @@ createheaderFooter();
 const getUsers = async () => {
   try {
     const response = await fetch(ENDPOINT);
-    if (response.ok) {
-      const data = await response.json();
-      return data.users;
-    }
+    const users = await response.json();
+
+    showUsers(users);
   } catch (error) {
     console.error(error);
   }
 };
 
-const showUsers = async (user) => {
-  await getUsers();
-  const userAvatar = document.createElement("img");
-  const login = document.createElement("h4");
-  const card = document.querySelector("div");
+const showUsers = (users) => {
+  users.forEach((user) => {
+    const usersCard = document.createElement("div");
+    const login = document.createElement("h4");
+    const userAvatar = document.createElement("img");
 
-  userAvatar.src = user.avatar_url;
-  login = user.login;
+    login.innerText = user.login;
+    userAvatar.src = user.avatar_url;
 
-  document.querySelector("#output").append(card);
-  card.append(userAvatar, login);
+    usersCard.append(login, userAvatar);
+    document.querySelector("#output").append(usersCard);
+  });
 };
 
 document.querySelector("#btn").addEventListener("click", async (event) => {
   event.preventDefault();
+
+  await getUsers();
 
   document.querySelector("#message").style.display = "none";
   document.querySelector("#output").style.backgroundColor = "#222";
