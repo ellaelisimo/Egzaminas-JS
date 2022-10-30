@@ -64,10 +64,11 @@
     }
   }
 
-tr{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 10px;
-    font-size: 30px;
+
+output {
+  display: flex
+}
+
+h3 {
+  font-size: 30px;
 }
