@@ -1,15 +1,3 @@
-/* ------------------------------ TASK 1 ----------------------------
-Parašykite JS kodą, kuris leis vartotojui įvesti svorį kilogramais ir
-pamatyti jo pateikto svorio kovertavimą į:
-1. Svarus (lb) | Formulė: lb = kg * 2.2046
-2. Gramus (g) | Formulė: g = kg / 0.0010000
-3. Uncijos (oz) | Formul4: oz = kg * 35.274
-
-Pastaba: atvaizdavimas turi būti matomas pateikus formą ir pateikiamas
-<div id="output"></div> viduje, bei turi turėti bent minimalų stilių;
-------------------------------------------------------------------- */
-//sukurti header ir footer
-
 const createheaderFooter = () => {
   const header = document.createElement("header");
   const footer = document.createElement("footer");
@@ -20,32 +8,48 @@ const createheaderFooter = () => {
 
 createheaderFooter();
 
-document
-  .getElementById("submit-btn")
-  .addEventListener("click", (event, valNum) => {
-    event.preventDefault();
+document.querySelector("form").addEventListener("submit", (event) => {
+  event.preventDefault();
 
-    const tableElement = document.createElement("table");
-    const poundsElement = document.createElement("tr");
-    const gramsElement = document.createElement("tr");
-    const ouncesElement = document.createElement("tr");
+  const converterInput = document.querySelector("#search").value;
 
-    poundsElement.innerText = "Pounds:";
-    gramsElement.innerText = "Grams:";
-    ouncesElement.innerText = "Ounces:";
+  const divPoundsElement = document.createElement("div");
+  const poundsElement = document.createElement("h3");
+  const spanPoundsElement = document.createElement("span");
 
-    tableElement.append(poundsElement, gramsElement, ouncesElement);
-    document.getElementById("output").append(tableElement);
+  document.querySelector("#output").append(divPoundsElement);
+  divPoundsElement.append(poundsElement);
+  poundsElement.append(spanPoundsElement);
 
-    const spanPoundsElement = document.createElement("span");
-    const spanGramsElement = document.createElement("span");
-    const spanOuncesElement = document.createElement("span");
+  const divGramsElement = document.createElement("div");
+  const gramsElement = document.createElement("h3");
+  const spanGramsElement = document.createElement("span");
 
-    poundsElement.append(spanPoundsElement);
-    gramsElement.append(spanGramsElement);
-    ouncesElement.append(spanOuncesElement);
+  document.querySelector("#output").append(divGramsElement);
+  divGramsElement.append(gramsElement);
+  gramsElement.append(spanGramsElement);
 
-    spanPoundsElement.innerHTML = parseFloat(valNum * 2.2046);
-    spanGramsElement.innerText = parseFloat(valNum / 0.001);
-    spanOuncesElement.innerText = parseFloat(valNum * 35.274);
-  });
+  const divOuncesElement = document.createElement("div");
+  const ouncesElement = document.createElement("h3");
+  const spanOuncesElement = document.createElement("span");
+
+  document.querySelector("#output").append(divOuncesElement);
+  divOuncesElement.append(ouncesElement);
+  ouncesElement.append(spanOuncesElement);
+
+  if (converterInput) {
+    const kilogram = Number(converterInput);
+
+    const pounds = kilogram * (2.2046).toFixed(4);
+    const grams = kilogram / 0.001;
+    const ounces = kilogram * (35.274).toFixed(2);
+
+    poundsElement.innerText = `Pounds (lb): ${pounds}`;
+    gramsElement.innerText = `Grams (g): ${grams}`;
+    ouncesElement.innerText = `Ounces (oz): ${ounces}`;
+  } else {
+    poundsElement.innerText = " ";
+    gramsElement.innerText = " ";
+    ouncesElement.innerText = " ";
+  }
+});
